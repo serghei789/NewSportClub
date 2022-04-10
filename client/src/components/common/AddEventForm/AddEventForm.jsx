@@ -15,11 +15,6 @@ export default function AddEventForm() {
 
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    startTimeInput  && console.log(startTimeInput);
-    endTimeInput  && console.log(moment(endTimeInput).format('YYYY-MM-DD HH:mm:ss'));
-  }, [startTimeInput, endTimeInput])
-
   function submitHandler() {
     dispatch(addNewEvent({
       title: titleInput,

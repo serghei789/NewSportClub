@@ -2,8 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import './RightSideBar.scss'
 
-const RightSideBar = () => {
-  const events = useSelector(state => state.events)
+const RightSideBar = ({events}) => {
 	return (
 		<div className="rightSideBar">
       {events && events.map((event) => 
