@@ -36,7 +36,7 @@ export const YandexMap = () =>  {
 						defaultState={mapState}
 						onLoad={ymaps => setYmaps(ymaps)}w
 						width={500}
-						height={500}
+						height={400}
 					>
 						<Clusterer
 							options={{

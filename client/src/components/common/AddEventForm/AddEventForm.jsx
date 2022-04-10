@@ -16,7 +16,7 @@ export default function AddEventForm() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    startTimeInput  && console.log(moment(startTimeInput).format('YYYY-MM-DD HH:mm:ss'));
+    startTimeInput  && console.log(startTimeInput);
     endTimeInput  && console.log(moment(endTimeInput).format('YYYY-MM-DD HH:mm:ss'));
   }, [startTimeInput, endTimeInput])
 
@@ -27,8 +27,8 @@ export default function AddEventForm() {
       placeId: areaIdInput,
       sportId: sportIdInput,
       userId: 1,  //TODO 
-      startTime: startTimeInput,
-      endTime: endTimeInput,
+      startTime: moment(startTimeInput).format('YYYY-MM-DD HH:mm:ss'),
+      endTime: moment(endTimeInput).format('YYYY-MM-DD HH:mm:ss'),
     }))
   }
 
@@ -41,14 +41,14 @@ export default function AddEventForm() {
         className="form__item" 
       />
       <input 
-        onChange={(e) => setStartTimeInput(moment(e.target.value).format('YYYY-MM-DD HH:mm:ss'))}
+        onChange={(e) => setStartTimeInput(e.target.value)}
         value={startTimeInput}
         type="datetime-local" 
         id="starteventtime" 
         name="starteventtime" 
       />
       <input 
-        onChange={(e) => setEndTimeInput(moment(e.target.value).format('YYYY-MM-DD HH:mm:ss'))}
+        onChange={(e) => setEndTimeInput(e.target.value)}
         value={endTimeInput}
         type="datetime-local" 
         id="endeventtime" 
