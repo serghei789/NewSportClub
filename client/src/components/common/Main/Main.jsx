@@ -2,12 +2,13 @@ import React from 'react';
 import './Main.scss'
 import LeftSideBar from "../LeftSideBar/LeftSideBar";
 import RightSideBar from "../LeftSideBar/RightSideBar/RightSideBar";
+import {YandexMap} from "../../YMaps/YandexMap";
 
 const Main = () => {
 	return (
 		<main className='main'>
 			<LeftSideBar/>
-			<img src="/assets/map.png" style={{width: '600px'}} alt=""/>
+			<YandexMap/>
 			<div className="mainRight">
 			<RightSideBar/>
 			</div>
