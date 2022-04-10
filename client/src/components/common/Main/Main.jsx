@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useMemo, useState} from 'react';
 import './Main.scss'
 import LeftSideBar from "../LeftSideBar/LeftSideBar";
 import RightSideBar from "../LeftSideBar/RightSideBar/RightSideBar";
-import { useDispatch } from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import { useEffect } from 'react'
 import { getAllEvents } from '../../../redux/thunks/eventThunks';
 import { getAllAreas } from '../../../redux/thunks/areaThunks';
@@ -10,6 +10,7 @@ import {YandexMap} from "../../YMaps/YandexMap";
 
 const Main = () => {
   const dispatch = useDispatch();
+
 
   useEffect(() => {
     dispatch(getAllAreas())
