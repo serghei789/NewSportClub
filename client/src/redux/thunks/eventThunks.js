@@ -9,9 +9,7 @@ export const getAllEvents = () => async (dispatch) => {
 }
 
 export const addNewEvent = (event) => async (dispatch) => {
-  await axios.post('http://sportik.herokuapp.com/events', event);
-  // const res = await axios.get('http://sportik.herokuapp.com/events');
-  // dispatch(setEventsToState(res.data));
+  console.log( await axios.post('http://sportik.herokuapp.com/events/addevent', event))
   dispatch(getAllEvents());
 }
 
