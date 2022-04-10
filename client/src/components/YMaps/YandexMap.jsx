@@ -1,9 +1,11 @@
 import React, {useEffect, useMemo, useState} from "react";
 import ReactDOM from "react-dom";
 import {YMaps, Map, Clusterer, Placemark} from "react-yandex-maps";
+// import POINTS from "./points";
 import {BalloonContentLayout} from "./BalloonContentLayout";
 import './Map.scss'
 import {useSelector} from "react-redux";
+import * as events from "events";
 
 const mapState = {
 	center: [55.751574, 37.573856],
@@ -11,32 +13,10 @@ const mapState = {
 };
 
 
-const Balloon = () => {
-	const [incr, setIncr] = useState(0)
-	const increment = () => setIncr(prevState => (prevState + 1));
-
-	return (
-		<div>
-			<button className='button-map' onClick={() => increment()}>Click me</button>
-			{incr}
-		</div>
-	);
-}
-
-export const YandexMap = () => {
+export const YandexMap = ({selectedPoint, setSelectedPoint}) => {
 	const [ymaps, setYmaps] = useState(null)
-	const [selectedPoint, setSelectedPoint] = useState(null)
-	const [currentPlace, setCurrentPlace] = useState(null)
-
-	useEffect(() => selectedPoint && console.log(selectedPoint), [selectedPoint])
-
-	const events = useSelector(state => state.events)
-
-	const filteredEvents = useMemo(() => events.filter(el => el.placeId === currentPlace))
-
-	const areas = useSelector(state => state.areas)
-
 	const onPlacemarkClick = point => setSelectedPoint(point)
+	const areas = useSelector(state => state.areas)
 
 	return (
 		<div className="map">
@@ -54,7 +34,7 @@ export const YandexMap = () => {
 							balloonPanelMaxMapArea: Infinity
 						}}
 					>
-						{ymaps && areas &&
+						{(ymaps && areas) &&
 							areas.map((point, index) => (
 								<Placemark
 									modules={[
@@ -62,21 +42,22 @@ export const YandexMap = () => {
 										"geoObject.addon.hint"
 									]}
 									key={index}
+									height='200px'
 									geometry={point.coordinates.split(',')}
 									onBalloonOpen={() => {
-										ReactDOM.hydrate(
-											<Balloon id={point.title} placeId={point.placeId} sportId/>,
-											document.getElementById("balloon")
-										);
+										// ReactDOM.hydrate(
+										// 	<Balloon id={point.title} sportId={point.sportId} placeId={point.placeId}/>,
+										// 	document.getElementById("balloon")
+										// ); // TODO: Тут можно поместить в баллон что нибудь
 									}}
 									onClick={() => onPlacemarkClick(point)}
-									options={{
-										balloonContentLayout: BalloonContentLayout(
-											ymaps.templateLayoutFactory,
-											<Balloon/>
-										),
-										balloonPanelMaxMapArea: Infinity
-									}}
+									// options={{
+									// 	balloonContentLayout: BalloonContentLayout(
+									// 		ymaps.templateLayoutFactory,
+									// 		// <Balloon/>
+									// 	),
+									// 	balloonPanelMaxMapArea: Infinity
+									// }} // TODO: Тут можно отключить баллон
 								/>
 							))}
 					</Clusterer>
