@@ -1,9 +1,10 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import ReactDOM from "react-dom";
 import {YMaps, Map, Clusterer, Placemark} from "react-yandex-maps";
-import POINTS from "./points";
+// import POINTS from "./points";
 import {BalloonContentLayout} from "./BalloonContentLayout";
 import './Map.scss'
+import { useSelector } from "react-redux";
 
 const mapState = {
 	center: [55.751574, 37.573856],
@@ -11,12 +12,13 @@ const mapState = {
 };
 
 
-const Balloon = () => {
+const Balloon = ({id}) => {
 	const [incr, setIncr] = useState(0)
 	const increment = () => setIncr(prevState => (prevState + 1));
 
 	return (
-		<div>
+		<div className="map__balloon">
+      <div>{id}</div>
 			<button className='button-map' onClick={() => increment()}>Click me</button>
 			{incr}
 		</div>
@@ -28,6 +30,7 @@ export const YandexMap = () =>  {
 	const [selectedPoint, setSelectedPoint] = useState(null)
 
 	const onPlacemarkClick = point => setSelectedPoint(point)
+  const areas = useSelector(state => state.areas)
 
 		return (
 			<div className="map">
@@ -45,15 +48,16 @@ export const YandexMap = () =>  {
 								balloonPanelMaxMapArea: Infinity
 							}}
 						>
-							{ymaps &&
-								POINTS.map((point, index) => (
+							{(ymaps && areas) && 
+								areas.map((point, index) => (
 									<Placemark
 										modules={[
 											"geoObject.addon.balloon",
 											"geoObject.addon.hint"
 										]}
 										key={index}
-										geometry={point.coords}
+                    height='200px'
+										geometry={point.coordinates.split(',')}
 										onBalloonOpen={() => {
 											ReactDOM.hydrate(
 												<Balloon id={point.title}/>,
