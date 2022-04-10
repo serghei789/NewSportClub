@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { getAllEvents } from '../../../redux/thunks/eventThunks';
 import { getAllAreas } from '../../../redux/thunks/areaThunks';
+import {YandexMap} from "../../YMaps/YandexMap";
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const Main = () => {
 	return (
 		<main className='main'>
 			<LeftSideBar/>
-			<img src="/assets/map.png" style={{width: '600px'}} alt=""/>
+			<YandexMap/>
 			<div className="mainRight">
 			<RightSideBar/>
 			</div>
