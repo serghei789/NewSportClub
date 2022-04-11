@@ -5,22 +5,25 @@ const LeftSideBar = () => {
 	return (
 		<div className="leftSideBar">
 			<div className="leftSideBar__item">
-				allaaaaaaa
+				Все
 			</div>
 			<div className="leftSideBar__item">
-				f
+				Футболл
 			</div>
 			<div className="leftSideBar__item">
-				v
+				Воллейболл
 			</div>
 			<div className="leftSideBar__item">
-				b
+				Баскетболл
 			</div>
 			<div className="leftSideBar__item">
-				s
+				Пинг-понг
 			</div>
 			<div className="leftSideBar__item">
-				alccl
+				Теннис
+			</div>
+			<div className="leftSideBar__item">
+				Турники
 			</div>
 		</div>
 	);

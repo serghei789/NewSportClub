@@ -6,7 +6,7 @@ const RightSideBar = ({events}) => {
 	return (
 		<div className="rightSideBar">
       {events && events.map((event) => 
-      <div className="rightSideBar__item">
+      <div className="rightSideBar__item" key={event.id}>
 				<div className="rightSideBar__top">
 					<p>{event.startTime.slice(0, 10)}</p>
 					<p>{event.startTime.slice(-10,-3)} - {event.endTime.slice(-10,-3)}</p>
