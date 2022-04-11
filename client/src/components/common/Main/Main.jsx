@@ -16,7 +16,7 @@ const Main = () => {
 		? events.filter(el => el.placeId === selectedPoint.id)
 		: events
 	)
-
+console.log(events)
 
 	useEffect(() => {
 		dispatch(getAllAreas())

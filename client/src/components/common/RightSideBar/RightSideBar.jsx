@@ -9,18 +9,19 @@ const RightSideBar = ({events}) => {
   const [openedEvent, setOpenedEvent] = useState(0);
 
     function openModal(curId) {
+			console.log('curId', curId)
       setModalOpen(!modalOpen)
-      console.log(curId);
       setOpenedEvent(curId)
     }
-
+console.log('openedEvent', openedEvent)
+	console.log('events', events)
 	return (
 		<div className="rightSideBar">
       <Modal modalOpen={modalOpen}>
          <MoreEvent id={openedEvent}/>
       </Modal>
       {events && events.map((event) => 
-      <div id={event.id} onClick={(e) => openModal(e.target.id)} className="rightSideBar__item" key={event.id}>
+      <div id={event.id} onClick={(e) => openModal(e.currentTarget.id)} className="rightSideBar__item" key={event.id}>
 				<div className="rightSideBar__top">
 					<p className='rightSideBar__top--date'>{event.startTime.slice(0, 10)}</p>
 					<p className='rightSideBar__top--time'>{event.startTime.slice(-10,-3)} - {event.endTime.slice(-10,-3)}</p>
