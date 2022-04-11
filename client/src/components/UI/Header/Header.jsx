@@ -1,23 +1,40 @@
-import Modal from '../../common/Modal/Modal'
 import './Header.scss'
 import { useState } from 'react'
 import AddEventForm from '../../common/AddEventForm/AddEventForm'
+import { Button, Modal } from 'react-bootstrap'
 
 const Header = () => {
-  const [modalOpen, setModalOpen] = useState(false);
+  
+  const [show, setShow] = useState(false);
 
-  function openModal() {
-    setModalOpen(!modalOpen)
-  }
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   return (
     <header className='header container'>
-        <Modal modalOpen={modalOpen}>
+        {/* <Modal modalOpen={modalOpen}>
           <AddEventForm />
-        </Modal>
+        </Modal> */}
       <div className="header__left">
-        <img onClick={openModal} src="/assets/Group1plus.png" alt="" className="header__item header__item--plus"/>
+        <Button variant="primary" onClick={handleShow}>
+          <img src="/assets/Group1plus.png" alt="" className="header__item header__item--plus"/>
+        </Button>
       </div>
+
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Modal heading</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={handleClose}>
+              Save Changes
+            </Button>
+          </Modal.Footer>
+        </Modal>
       <div className="header__right">
         <div className="header__items">
           <button className="header__item header__button">Signup</button>
