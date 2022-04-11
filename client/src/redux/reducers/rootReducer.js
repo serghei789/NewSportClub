@@ -1,10 +1,12 @@
 import {combineReducers} from "redux";
-import {userReducer} from "./userReducer";
 import {areasReducer} from "./areasReducer";
 import {eventsReducer} from "./eventsReducer";
+import userReducer from "./userReducer";
+import loaderReducer from "./loaderReducer";
 
 export const rootReducer = combineReducers({
 	user: userReducer,
 	areas: areasReducer,
-	events: eventsReducer
+	events: eventsReducer,
+	loader: loaderReducer,
 })
