@@ -1,19 +1,33 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import Modal from '../Modal/Modal';
+import MoreEvent from '../MoreEvent/MoreEvent';
 import './RightSideBar.scss'
 
 const RightSideBar = ({events}) => {
+
+  const [modalOpen, setModalOpen] = useState(false);
+  const [openedEvent, setOpenedEvent] = useState(0);
+
+    function openModal(curId) {
+      setModalOpen(!modalOpen)
+      console.log(curId);
+      setOpenedEvent(curId)
+    }
+
 	return (
 		<div className="rightSideBar">
+      <Modal modalOpen={modalOpen}>
+         <MoreEvent id={openedEvent}/>
+      </Modal>
       {events && events.map((event) => 
-      <div className="rightSideBar__item" key={event.id}>
+      <div id={event.id} onClick={(e) => openModal(e.target.id)} className="rightSideBar__item" key={event.id}>
 				<div className="rightSideBar__top">
-					<p>{event.startTime.slice(0, 10)}</p>
-					<p>{event.startTime.slice(-10,-3)} - {event.endTime.slice(-10,-3)}</p>
+					<p className='rightSideBar__top--date'>{event.startTime.slice(0, 10)}</p>
+					<p className='rightSideBar__top--time'>{event.startTime.slice(-10,-3)} - {event.endTime.slice(-10,-3)}</p>
 				</div>
 				<div className="rightSideBar__bottom">
-					<p>{event.title}</p>
-					<p>{event.about}</p>
+					<p className='rightSideBar__bottom--title'>{event.title}</p>
+					<p className='rightSideBar__bottom--about'>{event.about}</p>
 				</div>
 			</div>
       )}

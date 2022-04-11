@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
   width: 300px;
 
   &__item{
@@ -22,11 +22,28 @@
     display: flex;
     justify-content: space-between;
     text-align: center;
-    gap: 20px;
     width: 100%;
+    margin-bottom: 10px;
+
+    &--date {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    &--time {
+      font-size: 12px;
+      font-weight: 600;
+    }
   }
 
   &__bottom{
-    
+    &--title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    &--about {
+      font-size: 12px;
+      font-weight: 400;
+    }
   }
 }
