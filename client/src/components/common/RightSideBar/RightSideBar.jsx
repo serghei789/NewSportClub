@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Modal from '../Modal/Modal';
 import MoreEvent from '../MoreEvent/MoreEvent';
 import './RightSideBar.scss'
 
@@ -17,9 +16,9 @@ console.log('openedEvent', openedEvent)
 	console.log('events', events)
 	return (
 		<div className="rightSideBar">
-      <Modal modalOpen={modalOpen}>
+      {/* <Modal modalOpen={modalOpen}>
          <MoreEvent id={openedEvent}/>
-      </Modal>
+      </Modal> */}
       {events && events.map((event) => 
       <div id={event.id} onClick={(e) => openModal(e.currentTarget.id)} className="rightSideBar__item" key={event.id}>
 				<div className="rightSideBar__top">
