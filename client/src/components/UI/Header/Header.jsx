@@ -12,11 +12,11 @@ const Header = () => {
 
   return (
     <header className='header container'>
-      <div className="header__left">
-        <img onClick={openModal} src="/assets/Group1plus.png" alt="" className="header__item header__item--plus"/>
         <Modal modalOpen={modalOpen}>
           <AddEventForm />
         </Modal>
+      <div className="header__left">
+        <img onClick={openModal} src="/assets/Group1plus.png" alt="" className="header__item header__item--plus"/>
       </div>
       <div className="header__right">
         <div className="header__items">
