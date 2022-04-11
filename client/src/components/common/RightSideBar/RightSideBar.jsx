@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import AboutEventModal from '../../modals/AboutEventModal/AboutEventModal';
 import MoreEvent from '../MoreEvent/MoreEvent';
 import './RightSideBar.scss'
 
@@ -12,8 +13,7 @@ const RightSideBar = ({events}) => {
       setModalOpen(!modalOpen)
       setOpenedEvent(curId)
     }
-console.log('openedEvent', openedEvent)
-	console.log('events', events)
+
 	return (
 		<div className="rightSideBar">
       {/* <Modal modalOpen={modalOpen}>
@@ -21,6 +21,7 @@ console.log('openedEvent', openedEvent)
       </Modal> */}
       {events && events.map((event) => 
       <div id={event.id} onClick={(e) => openModal(e.currentTarget.id)} className="rightSideBar__item" key={event.id}>
+        <AboutEventModal event={event}>
 				<div className="rightSideBar__top">
 					<p className='rightSideBar__top--date'>{event.startTime.slice(0, 10)}</p>
 					<p className='rightSideBar__top--time'>{event.startTime.slice(-10,-3)} - {event.endTime.slice(-10,-3)}</p>
@@ -29,6 +30,7 @@ console.log('openedEvent', openedEvent)
 					<p className='rightSideBar__bottom--title'>{event.title}</p>
 					<p className='rightSideBar__bottom--about'>{event.about}</p>
 				</div>
+      </AboutEventModal>
 			</div>
       )}
 		</div>
