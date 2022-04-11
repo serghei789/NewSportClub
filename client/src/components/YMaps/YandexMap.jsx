@@ -17,6 +17,8 @@ export const YandexMap = ({selectedPoint, setSelectedPoint}) => {
 	const [ymaps, setYmaps] = useState(null)
 	const onPlacemarkClick = point => setSelectedPoint(point)
 	const areas = useSelector(state => state.areas)
+	const [allSports, setAllSports] = useState([])
+
 
 	return (
 		<div className="map">
