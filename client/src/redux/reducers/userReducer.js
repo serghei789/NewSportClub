@@ -1,7 +1,16 @@
-import {initState} from "../init/initState";
+import { DELETE_USER, SET_USER } from '../types/userTypes';
 
-export const userReducer = (state = initState, action) => {
+const userReducer = (state = null, action) => {
 	switch (action.type) {
-		default: return state
+		case SET_USER:
+			return action.payload;
+
+		case DELETE_USER:
+			return null;
+
+		default:
+			return state;
 	}
-}
+};
+
+export default userReducer;
