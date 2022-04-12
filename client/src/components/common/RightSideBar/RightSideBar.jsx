@@ -24,7 +24,7 @@ const RightSideBar = ({events}) => {
         <AboutEventModal event={event}>
 				<div className="rightSideBar__top">
 					<p className='rightSideBar__top--date'>{event.startTime.slice(0, 10)}</p>
-					<p className='rightSideBar__top--time'>{event.startTime.slice(-10,-3)} - {event.endTime.slice(-10,-3)}</p>
+					<p className='rightSideBar__top--time'>{event.startTime.slice(-8,-3)} - {event.endTime.slice(-8,-3)}</p>
 				</div>
 				<div className="rightSideBar__bottom">
 					<p className='rightSideBar__bottom--title'>{event.title}</p>

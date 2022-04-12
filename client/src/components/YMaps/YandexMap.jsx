@@ -18,7 +18,12 @@ export const YandexMap = ({selectedPoint, setSelectedPoint}) => {
 	const onPlacemarkClick = point => setSelectedPoint(point)
 	const areas = useSelector(state => state.areas)
 	const [allSports, setAllSports] = useState([])
+  const filter = useSelector(state => state.filter)
+  const currAreas = ((filter === 'Все') ? areas : areas.filter(el => filter.includes(el.id)))
 
+  useEffect(() => {
+    console.log('');
+  }, [filter])
 
 	return (
 		<div className="map">
@@ -26,7 +31,7 @@ export const YandexMap = ({selectedPoint, setSelectedPoint}) => {
 				<Map
 					defaultState={mapState}
 					onLoad={ymaps => setYmaps(ymaps)} w
-					width={500}
+					width={700}
 					height={400}
 				>
 					<Clusterer
@@ -36,8 +41,10 @@ export const YandexMap = ({selectedPoint, setSelectedPoint}) => {
 							balloonPanelMaxMapArea: Infinity
 						}}
 					>
-						{(ymaps && areas) &&
-							areas.map((point, index) => (
+						{(ymaps && currAreas) &&
+            /* filter !== '' ? areas.filter(el => el.id === filter.id) : areas
+            && */
+            currAreas.map((point, index) => (
 								<Placemark
 									modules={[
 										"geoObject.addon.balloon",

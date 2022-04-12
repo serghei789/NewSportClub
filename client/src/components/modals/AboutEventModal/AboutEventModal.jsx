@@ -10,7 +10,7 @@ export default function AboutEventModal({event, children}) {
   
   return(
   <>
-        <div onClick={handleShow}>
+        <div onClick={handleShow} style={{width: '100%'}}>
           {children}
         </div>
         <Modal show={show} onHide={handleClose}>
