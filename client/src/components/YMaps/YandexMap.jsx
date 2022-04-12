@@ -8,8 +8,8 @@ import {useSelector} from "react-redux";
 import * as events from "events";
 
 const mapState = {
-	center: [55.751574, 37.573856],
-	zoom: 5
+	center: [55.748355, 37.861139],
+	zoom: 14
 };
 
 
