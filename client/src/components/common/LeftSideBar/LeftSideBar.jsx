@@ -1,30 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './LeftSideBar.scss'
+import {useDispatch} from "react-redux";
+import { setFilterToState } from '../../../redux/actions/filterActions';
+import { getSports } from '../../../redux/thunks/sportsThunks';
+import axios from 'axios';
 
 const LeftSideBar = () => {
+  const [sportList, setSportList] = useState([]);
+  const [sportPlaces, setSportPlaces] = useState([]);
+  const dispatch = useDispatch();
+
+  function setFilter(sportId) {
+    const placesWithSport = sportId ? sportPlaces.filter(el => el.sportId === sportId).map(el => el.placeId) : 'Все'
+    dispatch(setFilterToState(placesWithSport))
+  }
+
+  useEffect( async () => {
+    const sports = await axios.get('http://localhost:4042/sports', { withCredentials: true });
+    setSportList(sports.data);
+    const sportplaces = await axios.get('http://localhost:4042/sportplaces', { withCredentials: true });
+    setSportPlaces(sportplaces.data)
+  }, [])
+
 	return (
 		<div className="leftSideBar">
-			<div className="leftSideBar__item">
-				Все
-			</div>
-			<div className="leftSideBar__item">
-				Футболл
-			</div>
-			<div className="leftSideBar__item">
-				Воллейболл
-			</div>
-			<div className="leftSideBar__item">
-				Баскетболл
-			</div>
-			<div className="leftSideBar__item">
-				Пинг-понг
-			</div>
-			<div className="leftSideBar__item">
-				Теннис
-			</div>
-			<div className="leftSideBar__item">
-				Турники
-			</div>
+      <p onClick={() => setFilter(0)} className='category'>Все</p>
+			{sportList.map(category => <p onClick={() => setFilter(category.id)} className='category'>{category.title}</p>)}
 		</div>
 	);
 };
