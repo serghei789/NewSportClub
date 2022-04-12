@@ -1,7 +1,8 @@
 import { DELETE_USER, SET_USER } from '../types/userTypes';
 import * as endPoints from '../../components/config/endPoints';
 import { disableLoader, enableLoader } from './loaderAction';
-
+import axios from 'axios';
+import * as config from '../../components/config'
 export const setUser = (user) => ({
 	type: SET_USER,
 	payload: user,
@@ -81,6 +82,11 @@ export const checkAuth = () => async (dispatch) => {
 		const user = await response.json();
 		dispatch(setUser(user));
 	}
+};
+
+export const getUserData = (id) => async (dispatch) => {
+  axios.get(`${config.getUser(id.id)}`)
+    .then((response) => dispatch(setUser(response.data)));
 };
 
 export const editUser = (user, navigate) => async (dispatch, getState) => {
