@@ -68,6 +68,7 @@ export const signOut = () => async (dispatch) => {
 		credentials: 'include',
 	});
 	if (response.status === 200) {
+
 		dispatch(deleteUser());
 	}
 };
