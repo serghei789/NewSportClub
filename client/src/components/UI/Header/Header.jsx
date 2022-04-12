@@ -5,13 +5,14 @@ import { Button, Modal } from 'react-bootstrap'
 import AddEventModal from '../../modals/AddEventModal/AddEventModal'
 import LoginModal from '../../modals/LoginModal/LoginModal'
 import RegistrationModal from '../../modals/RegistrationModal/RegistrationModal'
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {signOut} from "../../../redux/actions/userActions";
 
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const user = useSelector(state => state.user)
 
   const handleLogout = () => {
       dispatch(signOut());
@@ -24,15 +25,26 @@ const Header = () => {
           <AddEventForm />
         </Modal> */}
       <div className="header__left">
-        <AddEventModal />
+        {
+        user 
+        && <AddEventModal />
+        }
       </div>
       
       <div className="header__right">
         <div className="header__items">
-          <RegistrationModal />
-          <LoginModal />
+          {user 
+          ?  
+          <>
           <button className="header__item header__button" onClick={handleLogout}>Logout</button>
           <img src="/assets/account.png" alt={''} className="header__item header__item--account" />
+          </>
+          : 
+          <>
+          <RegistrationModal />
+          <LoginModal />
+          </>
+          }
         </div>
       </div>
     </header>
