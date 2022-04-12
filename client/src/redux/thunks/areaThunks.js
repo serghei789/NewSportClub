@@ -4,6 +4,6 @@ import { setAreasToState } from '../actions/areaActions';
 
 
 export const getAllAreas = () => async (dispatch) => {
-  const res = await axios.get('http://sportik.herokuapp.com/places', { withCredentials: true });
+  const res = await axios.get('http://localhost:4042/places', { withCredentials: true });
   dispatch(setAreasToState(res.data));
 }
