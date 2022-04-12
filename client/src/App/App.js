@@ -9,6 +9,7 @@ import RegistrationModal from "../components/modals/RegistrationModal/Registrati
 import LoginModal from "../components/modals/LoginModal/LoginModal";
 import PrivateRouter from "../components/common/PrivateRouter/PrivateRouter";
 import SignOut from "../components/common/SignOut/SignOut";
+import AddEventModal from "../components/modals/AddEventModal/AddEventModal";
 
 function App() {
 
@@ -21,9 +22,8 @@ function App() {
 		<div className="wrapper">
 			<Header/>
 			<Routes>
-				{/*<Route path="/events" element={<PrivateRouter>< /></PrivateRouter>} />
-				<Route path="/event/:id" element={<PrivateRouter>< /></PrivateRouter>} />
-				<Route path="/event/edit" element={<PrivateRouter>< /></PrivateRouter>} />*/}
+				<Route path="/newevent" element={<PrivateRouter><AddEventModal /></PrivateRouter>} />
+				{/*<Route path="/event/edit" element={<PrivateRouter>< /></PrivateRouter>} />*/}
 				<Route path="/auth/signout" element={<PrivateRouter><SignOut /></PrivateRouter>} />
 				<Route path="/auth/signin" element={<LoginModal />} />
 				<Route path='/auth/signup' element={<RegistrationModal />} />
