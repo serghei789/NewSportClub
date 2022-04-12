@@ -1,11 +1,39 @@
 import { useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import {Button, Form, Modal} from "react-bootstrap";
+import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {signIn} from "../../../redux/actions/userActions";
 
 export default function LoginModal() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+
+    const [userSignIn, setUserSignIn] = useState({
+      email: '',
+      password: '',
+    });
+
+    const navigate = useNavigate();
+    const from = { pathname: '/' };
+
+    const changeHandler = (e) => {
+      setUserSignIn((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    };
+
+    const dispatch = useDispatch();
+
+    const submitHandler = (e) => {
+      e.preventDefault();
+      let payload = Object.entries(userSignIn).filter((el) => (el[1] ? el[1].trim() : el[1]));
+      if (payload.length) {
+        payload = Object.fromEntries(payload);
+        dispatch(signIn(payload, navigate, from));
+      }
+    };
+
   
   return(
   <>
@@ -15,19 +43,26 @@ export default function LoginModal() {
         </div> */}
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
+            <Modal.Title>Войти</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            Авторизация
+
+            <Form onSubmit={submitHandler}>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Email</Form.Label>
+                <Form.Control onChange={changeHandler} value={userSignIn.email} type="email" name="email" placeholder="Введите почту"/>
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control onChange={changeHandler} value={userSignIn.password}  type="password" name="password" placeholder="Введите пароль"/>
+              </Form.Group>
+              <Button variant="primary" type="submit">
+                Зарегистрироваться
+              </Button>
+            </Form>
+
+
           </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
-            <Button variant="primary" onClick={handleClose}>
-              Save Changes
-            </Button>
-          </Modal.Footer>
         </Modal>
   </>
   )

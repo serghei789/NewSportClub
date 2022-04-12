@@ -46,6 +46,7 @@ export default function RegistrationModal() {
           <Modal.Title>Регистрация</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+
           <Form onSubmit={submitHandler}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email</Form.Label>
