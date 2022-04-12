@@ -21,6 +21,7 @@ export default function LoginModal() {
 
     const changeHandler = (e) => {
       setUserSignIn((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+
     };
 
     const dispatch = useDispatch();
@@ -56,8 +57,8 @@ export default function LoginModal() {
                 <Form.Label>Password</Form.Label>
                 <Form.Control onChange={changeHandler} value={userSignIn.password}  type="password" name="password" placeholder="Введите пароль"/>
               </Form.Group>
-              <Button variant="primary" type="submit">
-                Зарегистрироваться
+              <Button onClick={handleClose} variant="primary" type="submit">
+                Войти
               </Button>
             </Form>
 

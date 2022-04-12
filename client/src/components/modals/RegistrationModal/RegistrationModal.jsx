@@ -62,7 +62,7 @@ export default function RegistrationModal() {
               <Form.Label>Password</Form.Label>
               <Form.Control onChange={changeHandler} value={userSignUp.password}  type="password" name="password" placeholder="Password"/>
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Button onClick={handleClose} variant="primary" type="submit">
               Зарегистрироваться
             </Button>
           </Form>
