@@ -1,7 +1,7 @@
 import moment from "moment";
 import { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addNewEvent } from "../../../redux/thunks/eventThunks";
 import AddEventForm from "../../common/AddEventForm/AddEventForm";
 
@@ -12,6 +12,7 @@ export default function AddEventModal() {
   const [sportIdInput, setSportIdInput] = useState('');
   const [startTimeInput, setStartTimeInput] = useState(new Date().toISOString());
   const [endTimeInput, setEndTimeInput] = useState(new Date().toISOString());
+  const user = useSelector(state => state.user)
 
   const dispatch = useDispatch()
 
@@ -22,7 +23,7 @@ export default function AddEventModal() {
       about: commentInput,
       placeId: areaIdInput,
       sportId: sportIdInput,
-      userId: 1,  //TODO 
+      userId: user.id,  //TODO 
       startTime: moment(startTimeInput).format('YYYY-MM-DD HH:mm:ss'),
       endTime: moment(endTimeInput).format('YYYY-MM-DD HH:mm:ss'),
     }))
@@ -93,7 +94,7 @@ export default function AddEventModal() {
                 type="text" 
                 placeholder="..." />
               </Form.Group>
-              <Button variant="primary" type="submit">
+              <Button onClick={handleClose} variant="primary" type="submit">
                 Создать
               </Button>
             </Form>

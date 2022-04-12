@@ -8,7 +8,7 @@ export const getAllEvents = () => async (dispatch) => {
 }
 
 export const addNewEvent = (event) => async (dispatch) => {
-  await axios.post('http://localhost:4042/newevent', event);
+  await axios.post('http://localhost:4042/events/newevent', event);
   dispatch(getAllEvents());
 }
 
