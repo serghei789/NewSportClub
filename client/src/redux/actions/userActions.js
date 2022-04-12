@@ -2,7 +2,7 @@ import { DELETE_USER, SET_USER } from '../types/userTypes';
 import * as endPoints from '../../components/config/endPoints';
 import { disableLoader, enableLoader } from './loaderAction';
 import axios from 'axios';
-import * as config from '../../components/config'
+import * as config from '../../components/config/endPoints'
 export const setUser = (user) => ({
 	type: SET_USER,
 	payload: user,

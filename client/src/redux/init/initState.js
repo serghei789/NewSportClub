@@ -2,7 +2,8 @@ export const initState = () => ({
 	user: null,
 	loader: false,
 	areas: [],
-	events: []
+	events: [],
+  filter: {}
 })
 
 const getInitState = () => {

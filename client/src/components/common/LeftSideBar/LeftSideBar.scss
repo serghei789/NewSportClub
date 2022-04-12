@@ -9,3 +9,8 @@
   width: 200px;
   box-sizing: border-box;
 }
+
+.category:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
