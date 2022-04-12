@@ -1,5 +1,6 @@
 body {
   font-family: 'Inter', sans-serif;
+
 }
 
 .wrapper {
@@ -11,6 +12,9 @@ body {
   flex-direction: column;
   background: center / cover no-repeat url('../../public/assets/pokoleniya-i-sport_162981756798672779.jpeg')/* ,
   #eee 35% url("https://ibb.co/7WRTMqf") */;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 .container {
