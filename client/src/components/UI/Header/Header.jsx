@@ -8,6 +8,7 @@ import RegistrationModal from '../../modals/RegistrationModal/RegistrationModal'
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {signOut} from "../../../redux/actions/userActions";
+import ProfilePage from '../../common/ProfilePage/ProfilePage'
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -37,7 +38,7 @@ const Header = () => {
           ?  
           <>
           <button className="header__item header__button" onClick={handleLogout}>Logout</button>
-          <img src="/assets/account.png" alt={''} className="header__item header__item--account" />
+          <ProfilePage />
           </>
           : 
           <>

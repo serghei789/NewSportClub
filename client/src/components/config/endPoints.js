@@ -5,6 +5,6 @@ export const signIn = () => `${host}/auth/signin`;
 export const signOut = () => `${host}/auth/signout`;
 export const checkAuth = () => `${host}/auth/check`;
 
-export const getAllUsers = () => `${host}/users`;
-export const editUser = (id) => `${host}/users/${id}`;
-export const getUser = (id) => `${host}/users/${id}`;
+export const getAllUsers = () => `${host}/user`;
+export const editUser = (id) => `${host}/user/${id}`;
+export const getUser = (id) => `${host}/user/${id}`;

@@ -14,7 +14,7 @@ const navigate = useNavigate();
   const [count, setCount] = useState(false);
 console.log(userData);
   useEffect(()=>{
-    fetch(`http://localhost:4042/users/${userData.id}`).then(res => res.json()).then(data => setInputs(data))
+    fetch(`http://localhost:4042/user/${userData.id}`).then(res => res.json()).then(data => setInputs(data))
   }, [count])
   console.log(count);
 
