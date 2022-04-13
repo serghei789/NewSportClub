@@ -1,7 +1,8 @@
 import { DELETE_USER, SET_USER } from '../types/userTypes';
 import * as endPoints from '../../components/config/endPoints';
 import { disableLoader, enableLoader } from './loaderAction';
-
+import axios from 'axios';
+import * as config from '../../components/config/endPoints'
 export const setUser = (user) => ({
 	type: SET_USER,
 	payload: user,
@@ -83,23 +84,26 @@ export const checkAuth = () => async (dispatch) => {
 	}
 };
 
-export const editUser = (user, navigate) => async (dispatch, getState) => {
-	const {
-		user: {id: userId},
-	} = getState();
+export const getUserData = (id) => async (dispatch) => {
+  axios.get(`${config.getUser(id.id)}`)
+    .then((response) => dispatch(setUser(response.data)));
+};
+
+export const editUser = ({formData, userData, navigate, setCount, count}) => async (dispatch) => {
+	// const {
+	// 	user: {id: userId},
+	// } = getState();
+  console.log("++++++++++++", userData);
 	dispatch(enableLoader());
-	const response = await fetch(endPoints.editUser(userId), {
-		method: 'PATCH',
-		headers: {
-			'Content-Type': 'application/json',
-		},
+	const response = await fetch(endPoints.editUser(userData.id), {
+		method: 'PUT',
 		credentials: 'include',
-		body: JSON.stringify(user),
+		body: formData,
 	});
 	if (response.status === 200) {
-		const userData = await response.json();
-		dispatch(setUser(userData));
-		navigate(`/users/${userData.id}`);
+		const user = await response.json();
+		dispatch(setUser(user));
+		setCount(!count)
 	} else {
 		navigate.replace('/');
 	}
