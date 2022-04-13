@@ -1,18 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { editUser, getUserData } from '../../../redux/actions/userActions'
+import style from './profile.module.css';
+
 
 const ProfileData = () => {
-
-  const id = useParams();
+const navigate = useNavigate();
+  // const id = useParams();
   const dispatch = useDispatch();
   const userData = useSelector((store) => store.user);
-  const [inputs, setInputs] = useState({ ...userData });
+  const [inputs, setInputs] = useState({});
+  const [count, setCount] = useState(false);
+console.log(userData);
+  useEffect(()=>{
+    fetch(`http://localhost:4042/users/${userData.id}`).then(res => res.json()).then(data => setInputs(data))
+  }, [count])
+  console.log(count);
 
-  useEffect(() => {
-    dispatch(getUserData(id));
-  }, []);
+// console.log('aaaaaa', userData.id );
+  // useEffect(() => {
+  //   dispatch(getUserData(id));
+  // }, []);
 
   const handleChange = (e) => {
     if (e.target.files) {
@@ -25,24 +34,30 @@ const ProfileData = () => {
       setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     }
   };
+  // console.log(inputs);
   // console.log(currentUser);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(editUser(inputs, id));
+    const formData = new FormData();
+    formData.append('file', inputs.file);
+    formData.append('name', inputs.name);
+    formData.append('email', inputs.email);
+    formData.append('about', inputs.about);
+    dispatch(editUser({formData, userData, navigate, setCount, count}));
+    setCount(!count)
   };
-  console.log(inputs);
 
   return (
-    <form onSubmit={handleSubmit} className={style.formochka}>
-      <div className="container col-md-4 mb-3 my-3">
-        <div className="card">
+    <form className={style.formochka}>
+      <div className="container col-md-5 mb-4 my-4 w-50">
+        <div className="">
           <div className="d-flex flex-column align-items-center text-center my-3">
-            <img src={inputs.photo ? `http://localhost:3001/img/${userData.photo}` : 'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png'} alt="profilephoto" className="rounded" width="350" />
+            <img src={inputs.photo ? `http://localhost:4042/img/${inputs.photo}` : 'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png'} alt="profilephoto" className="rounded" width="350" />
             <div className="my-3">
               <h4>
                 {' '}
-                <span className="material-icons">
-                  verified
+                <span className="container col-md-4 mb-3">
+                  Ваш кабинет, 
                 </span>
                 {inputs.name}
               </h4>
@@ -51,7 +66,7 @@ const ProfileData = () => {
                 id="file"
                 onChange={handleChange}
                 type="file"
-                name="photo"
+                name="file"
               />
             </div>
           </div>
@@ -60,66 +75,33 @@ const ProfileData = () => {
       <div className="container col-md-4 mb-3">
         <div className="card">
           <div className="card-body">
-            <h5>Ваши персональные данные</h5>
+            <h5>Ваши данные</h5>
             <hr />
             <div className="row">
-              <div className="col-sm-3">
-                <h6 className="mb-0">
-                  <span className="material-icons">
-                    account_circle
-                  </span>
-                  {' '}
-                  Имя
-                </h6>
-              </div>
+            <p><strong>Имя</strong></p>
               <div className="col-sm-9 text-secondary">
                 <input className="text" type="text" name="name" placeholder="Имя" value={inputs.name} onChange={handleChange} />
               </div>
             </div>
             <hr />
             <div className="row">
-              <div className="col-sm-3">
-                <h6 className="mb-0">
-                  <span className="material-icons">
-                    email
-                  </span>
-                  {' '}
-                  Email
-                </h6>
-              </div>
+                  <p><strong>Email</strong></p>
               <div className="col-sm-9 text-secondary">
-                <input className="text" type="text" name="email" placeholder="Email" value={inputs.email} onChange={handleChange} disabled />
+                <input className="text" type="text" name="email" placeholder="Email" value={inputs.email} onChange={handleChange} />
               </div>
             </div>
             <hr />
             <div className="row">
-              <div className="col-sm-3">
-                <h6 className="mb-0">
-                  <span className="material-icons">
-                    phone_enabled
-                  </span>
-                  {' '}
-                  Телефон
-                </h6>
-              </div>
-              <div className="col-sm-9 text-secondary">
-                <input className="text" type="text" name="phone" placeholder="Телефон" value={inputs.phone} onChange={handleChange} />
-              </div>
-            </div>
-            <hr />
-            <div className="row">
-              <div className="col-sm-3">
-                <h6 className="mb-0">Страна</h6>
-              </div>
-              <div className="col-sm-9 text-secondary">
-                Россия
-              </div>
+                <p><strong>О себе</strong></p>
+                <div className="col-sm-9 text-secondary">
+                  <input className="text" type="text" name="about" placeholder="о себе..." value={inputs.about} onChange={handleChange} />
+                </div>
             </div>
           </div>
         </div>
-        <button className="btn btn-secondary my-3">Сохранить изменения</button>
-        <Link to="/addBidding"><button className="btn btn-secondary my-3 mx-3">Подать объявление</button></Link>
-        <Link to="/myProducts"><button className="btn btn-secondary my-3 mx-1">Мои товары</button></Link>
+        <button onClick={handleSubmit} className="btn btn-secondary my-3">Сохранить изменения</button>
+        {/* <Link to="/addBidding"><button className="btn btn-secondary my-3 mx-3">Подать объявление</button></Link>
+        <Link to="/myProducts"><button className="btn btn-secondary my-3 mx-1">Мои товары</button></Link> */}
       </div>
     </form>
   );

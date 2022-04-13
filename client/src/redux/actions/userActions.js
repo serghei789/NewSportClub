@@ -89,23 +89,21 @@ export const getUserData = (id) => async (dispatch) => {
     .then((response) => dispatch(setUser(response.data)));
 };
 
-export const editUser = (user, navigate) => async (dispatch, getState) => {
-	const {
-		user: {id: userId},
-	} = getState();
+export const editUser = ({formData, userData, navigate, setCount, count}) => async (dispatch) => {
+	// const {
+	// 	user: {id: userId},
+	// } = getState();
+  console.log("++++++++++++", userData);
 	dispatch(enableLoader());
-	const response = await fetch(endPoints.editUser(userId), {
-		method: 'PATCH',
-		headers: {
-			'Content-Type': 'application/json',
-		},
+	const response = await fetch(endPoints.editUser(userData.id), {
+		method: 'PUT',
 		credentials: 'include',
-		body: JSON.stringify(user),
+		body: formData,
 	});
 	if (response.status === 200) {
-		const userData = await response.json();
-		dispatch(setUser(userData));
-		navigate(`/users/${userData.id}`);
+		const user = await response.json();
+		dispatch(setUser(user));
+		setCount(!count)
 	} else {
 		navigate.replace('/');
 	}

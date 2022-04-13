@@ -37,7 +37,7 @@ const Header = () => {
           ?  
           <>
           <button className="header__item header__button" onClick={handleLogout}>Logout</button>
-          <img src="/assets/account.png" alt={''} className="header__item header__item--account" to={`/profile/${user.id}`} />
+          <img src="/assets/account.png" alt={''} className="header__item header__item--account" />
           </>
           : 
           <>

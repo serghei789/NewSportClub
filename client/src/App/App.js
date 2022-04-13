@@ -10,7 +10,6 @@ import LoginModal from "../components/modals/LoginModal/LoginModal";
 import PrivateRouter from "../components/common/PrivateRouter/PrivateRouter";
 import SignOut from "../components/common/SignOut/SignOut";
 import AddEventModal from "../components/modals/AddEventModal/AddEventModal";
-import ProfilePage from '../components/common/ProfilePage/ProfilePage';
 
 function App() {
 
@@ -23,7 +22,6 @@ function App() {
 		<div className="wrapper">
 			<Header/>
 			<Routes>
-        <Route path="/profile/:id" element={<ProfilePage />} />
 				<Route path="/newevent" element={<PrivateRouter><AddEventModal /></PrivateRouter>} />
 				{/*<Route path="/event/edit" element={<PrivateRouter>< /></PrivateRouter>} />*/}
 				<Route path="/auth/signout" element={<PrivateRouter><SignOut /></PrivateRouter>} />
