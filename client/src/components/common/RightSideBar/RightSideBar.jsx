@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import AboutEventModal from '../../modals/AboutEventModal/AboutEventModal';
 import MoreEvent from '../MoreEvent/MoreEvent';
+import FormatedDate from './FormatedDate/FormatedDate';
 import './RightSideBar.scss'
 
 const RightSideBar = ({events}) => {
@@ -23,7 +24,7 @@ const RightSideBar = ({events}) => {
       <div id={event.id} onClick={(e) => openModal(e.currentTarget.id)} className="rightSideBar__item" key={event.id}>
         <AboutEventModal event={event}>
 				<div className="rightSideBar__top">
-					<p className='rightSideBar__top--date'>{event.startTime.slice(0, 10)}</p>
+          <FormatedDate time={event.startTime}/>
 					<p className='rightSideBar__top--time'>{event.startTime.slice(-8,-3)} - {event.endTime.slice(-8,-3)}</p>
 				</div>
 				<div className="rightSideBar__bottom">
