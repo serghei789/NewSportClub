@@ -2,7 +2,7 @@ const { REACT_APP_HOST: host } = process.env;
 
 export const signUp = () => `${host}/user/registration`;
 export const signIn = () => `${host}/auth/signin`;
-export const signOut = () => `${host}/signout`;
+export const signOut = () => `${host}/auth/signout`;
 export const checkAuth = () => `${host}/auth/check`;
 
 export const getAllUsers = () => `${host}/users`;
