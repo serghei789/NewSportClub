@@ -53,7 +53,7 @@ export default function RegistrationModal() {
               <Form.Control onChange={changeHandler} value={userSignUp.email} type="email" name="email" placeholder="Введите почту"/>
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Group className="mb-3" controlId="formBasicName">
               <Form.Label>Name</Form.Label>
               <Form.Control onChange={changeHandler} value={userSignUp.name} type="text" name="name" placeholder="Введите имя"/>
             </Form.Group>

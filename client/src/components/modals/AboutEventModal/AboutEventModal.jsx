@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button, Card, Modal } from "react-bootstrap";
 import AddEventForm from "../../common/AddEventForm/AddEventForm";
+import ChatRoom from "../../common/Chatroom/ChatRoom";
 
 export default function AboutEventModal({event, children}) {
   const [show, setShow] = useState(false);
@@ -27,7 +28,7 @@ export default function AboutEventModal({event, children}) {
               <p>Окончание: {event.endTime}</p>
               <p>Участники: </p>
               </Card.Text>
-              <Card.Link href="#">Буду участвовать</Card.Link>
+              <ChatRoom event={event}  />
             </Card.Body>
           </Card>
         </Modal>
