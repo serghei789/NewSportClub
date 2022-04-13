@@ -3,12 +3,13 @@ export const initState = () => ({
 	loader: false,
 	areas: [],
 	events: [],
-  filter: {}
+  filter: 'Все',
 })
 
 const getInitState = () => {
 	const stateFromLS = JSON.parse(window.localStorage.getItem('redux'));
-	return stateFromLS || initState;
+	console.log(stateFromLS)
+	return stateFromLS || initState();
 
 };
 
