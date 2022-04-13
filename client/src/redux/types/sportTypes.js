@@ -1,0 +1,1 @@
+export const GET_SPORT = 'GET_SPORT'
