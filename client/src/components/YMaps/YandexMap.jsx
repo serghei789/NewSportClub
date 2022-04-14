@@ -30,7 +30,7 @@ export const YandexMap = ({selectedPoint, setSelectedPoint}) => {
 			<YMaps query={{lang: "ru_RU", load: "package.full"}}>
 				<Map
 					defaultState={mapState}
-					onLoad={ymaps => setYmaps(ymaps)} w
+					onLoad={ymaps => setYmaps(ymaps)}
 					width={700}
 					height={400}
 				>
