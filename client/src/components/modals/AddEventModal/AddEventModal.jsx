@@ -1,9 +1,10 @@
 import moment from "moment";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewEvent } from "../../../redux/thunks/eventThunks";
 import AddEventForm from "../../common/AddEventForm/AddEventForm";
+import getSports from '../../config/endPoints'
 
 export default function AddEventModal() {
   const [titleInput, setTitleInput] = useState('');
@@ -33,7 +34,21 @@ export default function AddEventModal() {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const [sports, setSports] = useState([]);
+
+  useEffect(()=>{
+    fetch('http://localhost:4042/sports').then(res => res.json()).then(data => setSports(data))
+  },[])
+  // console.log('---------------------------------',sportIdInput);
   
+  const [places, setPlaces] = useState([]);
+
+  useEffect(()=>{
+    fetch('http://localhost:4042/places').then(res => res.json()).then(data => setPlaces(data))
+  },[])
+  // console.log('---------------------------------',places);
+
   return(
   <>
         <div onClick={(e) => handleShow(e)} /* className='btn btn-light' */>
@@ -71,20 +86,20 @@ export default function AddEventModal() {
                 placeholder="Введите дату начала" />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>СпортId</Form.Label>
-                <Form.Control 
-                onChange={(e) => setSportIdInput(e.target.value)} 
-                value={sportIdInput} 
-                type="text" 
-                placeholder="selector" />
+                <Form.Select aria-label="Default select example" onChange={(e) => setSportIdInput(e.target.value)}>
+                  <option>Виды спорта</option>
+                  {sports.map(el => {
+                   return <option value={`${el.id}`}>{el.title}</option>
+                  })}
+                </Form.Select>
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>ПлощадкаId</Form.Label>
-                <Form.Control 
-                onChange={(e) => setAreaIdInput(e.target.value)} 
-                value={areaIdInput} 
-                type="text" 
-                placeholder="seletor" />
+                <Form.Select aria-label="Default select example" onChange={(e) => setAreaIdInput(e.target.value)}>
+                  <option>Площадки</option>
+                  {places.map(el => {
+                   return <option value={`${el.id}`}>{el.title}</option>
+                  })}
+                </Form.Select>
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Коментарий</Form.Label>
