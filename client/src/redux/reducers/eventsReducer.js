@@ -1,5 +1,5 @@
 import {initState} from "../init/initState";
-import { SET_EVENTS } from "../types/eventTypes";
+import { SET_CUR_EVENT, SET_EVENTS } from "../types/eventTypes";
 
 export const eventsReducer = (state = initState, action) => {
 	switch (action.type) {

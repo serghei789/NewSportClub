@@ -91,7 +91,7 @@ const navigate = useNavigate();
             </div>
           </div>
         </div>
-        <button onClick={handleSubmit} className="btn btn-secondary my-3">Сохранить изменения</button>
+        <button onClick={handleSubmit} className="btn btn-primary my-3">Сохранить изменения</button>
         {/* <Link to="/addBidding"><button className="btn btn-secondary my-3 mx-3">Подать объявление</button></Link>
         <Link to="/myProducts"><button className="btn btn-secondary my-3 mx-1">Мои товары</button></Link> */}
       </div>

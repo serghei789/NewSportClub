@@ -2,7 +2,7 @@ import moment from "moment";
 import { useEffect, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { addNewEvent } from "../../../redux/thunks/eventThunks";
+import { addNewEvent, getAllEvents } from "../../../redux/thunks/eventThunks";
 import AddEventForm from "../../common/AddEventForm/AddEventForm";
 import getSports from '../../config/endPoints'
 
@@ -28,6 +28,7 @@ export default function AddEventModal() {
       startTime: moment(startTimeInput).format('YYYY-MM-DD HH:mm:ss'),
       endTime: moment(endTimeInput).format('YYYY-MM-DD HH:mm:ss'),
     }))
+    dispatch(getAllEvents())
   }
 
   const [show, setShow] = useState(false);
@@ -89,7 +90,7 @@ export default function AddEventModal() {
                 <Form.Select aria-label="Default select example" onChange={(e) => setSportIdInput(e.target.value)}>
                   <option>Виды спорта</option>
                   {sports.map(el => {
-                   return <option value={`${el.id}`}>{el.title}</option>
+                   return <option key={el.id} value={`${el.id}`}>{el.title}</option>
                   })}
                 </Form.Select>
               </Form.Group>
@@ -97,7 +98,7 @@ export default function AddEventModal() {
                 <Form.Select aria-label="Default select example" onChange={(e) => setAreaIdInput(e.target.value)}>
                   <option>Площадки</option>
                   {places.map(el => {
-                   return <option value={`${el.id}`}>{el.title}</option>
+                   return <option key={el.id} value={`${el.id}`}>{el.title}</option>
                   })}
                 </Form.Select>
               </Form.Group>

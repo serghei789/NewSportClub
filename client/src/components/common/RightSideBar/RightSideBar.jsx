@@ -3,6 +3,7 @@ import AboutEventModal from '../../modals/AboutEventModal/AboutEventModal';
 import FormatedDate from './FormatedDate/FormatedDate';
 import './RightSideBar.scss'
 import io from 'socket.io-client'
+import { useDispatch } from 'react-redux';
 
 const socket = io.connect('http://localhost:4042')
 
@@ -10,13 +11,12 @@ const RightSideBar = ({events}) => {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [openedEvent, setOpenedEvent] = useState(0);
+  const dispatch = useDispatch();
 
     function openModal(curId) {
       setModalOpen(!modalOpen)
       setOpenedEvent(curId)
     }
-
-	useEffect(() => {}, [events])
 
 	return (
 		<div className="rightSideBar">

@@ -17,7 +17,7 @@ function App() {
 	const theme = useSelector(store => store.filter)
 	const dispatch = useDispatch();
 	useEffect(() => {
-		dispatch(checkAuth)
+		dispatch(checkAuth())
 	}, []);
 
 
@@ -43,13 +43,13 @@ function App() {
 		<div className={`wrapper ${background}`}>
 			<Header/>
 			<Routes>
+				<Route path="/" element={<Main bg={{background, setBackground}}/>} />
 				<Route path="/newevent" element={<PrivateRouter><AddEventModal /></PrivateRouter>} />
 				{/*<Route path="/event/edit" element={<PrivateRouter>< /></PrivateRouter>} />*/}
 				<Route path="/auth/signout" element={<PrivateRouter><SignOut /></PrivateRouter>} />
 				<Route path="/auth/signin" element={<LoginModal />} />
 				<Route path='/auth/signup' element={<RegistrationModal />} />
 			</Routes>
-			<Main bg={{background, setBackground}}/>
 		</div>
 	);
 }

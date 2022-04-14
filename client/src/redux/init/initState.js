@@ -3,6 +3,7 @@ export const initState = () => ({
 	loader: false,
 	areas: [],
 	events: [],
+  curEvent:{},
   filter: 'Все',
 })
 
