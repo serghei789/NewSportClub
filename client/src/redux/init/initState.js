@@ -8,7 +8,6 @@ export const initState = () => ({
 
 const getInitState = () => {
 	const stateFromLS = JSON.parse(window.localStorage.getItem('redux'));
-	console.log(stateFromLS)
 	return stateFromLS || initState();
 
 };

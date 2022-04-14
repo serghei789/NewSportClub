@@ -90,10 +90,6 @@ export const getUserData = (id) => async (dispatch) => {
 };
 
 export const editUser = ({formData, userData, navigate, setCount, count}) => async (dispatch) => {
-	// const {
-	// 	user: {id: userId},
-	// } = getState();
-  console.log("++++++++++++", userData);
 	dispatch(enableLoader());
 	const response = await fetch(endPoints.editUser(userData.id), {
 		method: 'PUT',

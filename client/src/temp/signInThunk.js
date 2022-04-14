@@ -11,7 +11,6 @@ export const signIn = (signInInput, navigate) => async (dispatch) =>{
              body: JSON.stringify(signInInput)
     })
 
-    console.log(response);
 if(response.status === 200){
     const {id, name} = await response.json()
     dispatch(sign({id, name}))

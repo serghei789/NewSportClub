@@ -12,7 +12,6 @@ const RightSideBar = ({events}) => {
   const [openedEvent, setOpenedEvent] = useState(0);
 
     function openModal(curId) {
-			console.log('curId', curId)
       setModalOpen(!modalOpen)
       setOpenedEvent(curId)
     }

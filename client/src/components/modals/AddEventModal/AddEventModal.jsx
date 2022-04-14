@@ -36,7 +36,7 @@ export default function AddEventModal() {
   
   return(
   <>
-        <div onClick={(e) => handleShow(e)}>
+        <div onClick={(e) => handleShow(e)} /* className='btn btn-light' */>
           <img src="/assets/Group1plus.png" alt="" className="header__item header__item--plus"/>
         </div>
         <Modal show={show} onHide={handleClose}>

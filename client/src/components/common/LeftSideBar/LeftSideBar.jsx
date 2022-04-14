@@ -28,7 +28,7 @@ const LeftSideBar = ({bg}) => {
 	return (
 		<div className="leftSideBar">
       <p onClick={() => setFilter(0)} className='category'>Все</p>
-			{sportList.map(category => <p onClick={() => setFilter(category.id)} className='category'>{category.title}</p>)}
+			{sportList.map(category => <p onClick={() => setFilter(category.id)} key={category.id} className='category'>{category.title}</p>)}
 		</div>
 	);
 };
