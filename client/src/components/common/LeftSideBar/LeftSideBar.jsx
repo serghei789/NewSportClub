@@ -5,13 +5,16 @@ import { setFilterToState } from '../../../redux/actions/filterActions';
 import { getSports } from '../../../redux/thunks/sportsThunks';
 import axios from 'axios';
 
-const LeftSideBar = () => {
+const LeftSideBar = ({bg}) => {
   const [sportList, setSportList] = useState([]);
   const [sportPlaces, setSportPlaces] = useState([]);
   const dispatch = useDispatch();
 
   function setFilter(sportId) {
-    const placesWithSport = sportId ? sportPlaces.filter(el => el.sportId === sportId).map(el => el.placeId) : 'Все'
+      const bgArr = ['', 'football', 'basketball', 'volleyball', 'run', 'workout'];
+      bg.setBackground(bgArr[sportId]);
+
+    const placesWithSport = sportId ? sportPlaces.filter(el => el.sportId === sportId ).map(el => el.placeId) : 'Все'
     dispatch(setFilterToState(placesWithSport))
   }
 
@@ -25,7 +28,7 @@ const LeftSideBar = () => {
 	return (
 		<div className="leftSideBar">
       <p onClick={() => setFilter(0)} className='category'>Все</p>
-			{sportList.map(category => <p onClick={() => setFilter(category.id)} className='category'>{category.title}</p>)}
+			{sportList.map(category => <p onClick={() => setFilter(category.id)} key={category.id} className='category'>{category.title}</p>)}
 		</div>
 	);
 };

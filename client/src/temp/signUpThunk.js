@@ -13,7 +13,6 @@ const response = await fetch('http://sportik.herokuapp.com/user/registration',{
     
 })
 const user = await response.json();
-console.log(response);
 if(response.status === 234){
     alert('this user exist')
 }else if (response.status === 200) {

@@ -12,16 +12,10 @@ const navigate = useNavigate();
   const userData = useSelector((store) => store.user);
   const [inputs, setInputs] = useState({});
   const [count, setCount] = useState(false);
-console.log(userData);
   useEffect(()=>{
     fetch(`http://localhost:4042/user/${userData.id}`).then(res => res.json()).then(data => setInputs(data))
   }, [count])
-  console.log(count);
 
-// console.log('aaaaaa', userData.id );
-  // useEffect(() => {
-  //   dispatch(getUserData(id));
-  // }, []);
 
   const handleChange = (e) => {
     if (e.target.files) {
@@ -34,8 +28,6 @@ console.log(userData);
       setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     }
   };
-  // console.log(inputs);
-  // console.log(currentUser);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();

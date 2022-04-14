@@ -8,7 +8,7 @@ import {getAllEvents} from '../../../redux/thunks/eventThunks';
 import {getAllAreas} from '../../../redux/thunks/areaThunks';
 import {YandexMap} from "../../YMaps/YandexMap";
 
-const Main = () => {
+const Main = ({bg}) => {
 	const dispatch = useDispatch();
 	const [selectedPoint, setSelectedPoint] = useState(null)
 	const events = useSelector(s => s.events)
@@ -16,7 +16,6 @@ const Main = () => {
 		? events.filter(el => el.placeId === selectedPoint.id)
 		: events
 	)
-console.log(events)
 
 	useEffect(() => {
 		dispatch(getAllAreas())
@@ -25,7 +24,7 @@ console.log(events)
 
 	return (
 		<main className='main'>
-			<LeftSideBar/>
+			<LeftSideBar bg={bg}/>
 			<YandexMap selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint}/>
 			<div className="mainRight">
 				<RightSideBar events={filteredEvents}/>

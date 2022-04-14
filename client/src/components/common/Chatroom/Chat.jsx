@@ -7,9 +7,6 @@ function Chat({ socket, username, room, event }) {
 	const [messageList, setMessageList] = useState([]);
 	const currentUser = useSelector(state => state.user)
 
-	console.log('currentUser -->', currentUser.name)
-
-
 	const sendMessage = async () => {
 		if (currentMessage !== "") {
 			const messageData = {
