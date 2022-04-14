@@ -3,7 +3,7 @@ export const initState = () => ({
 	loader: false,
 	areas: [],
 	events: [],
-  filter: {}
+    filter: 'Все'
 })
 
 const getInitState = () => {

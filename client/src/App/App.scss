@@ -11,10 +11,26 @@ body {
   align-items: center;
   flex-direction: column;
   background: center / cover no-repeat url('../../public/assets/pokoleniya-i-sport_162981756798672779.jpeg')/* ,
-  #eee 35% url("https://ibb.co/7WRTMqf") */;
+  //#eee 35% url("https://ibb.co/7WRTMqf") */;
   position: fixed;
   top: 0;
   left: 0;
+}
+
+.football {
+  background: center / cover no-repeat url('../../public/assets/foot5.jpg');
+}
+.basketball {
+  background: center / cover no-repeat url('../../public/assets/basket.jpg');
+}
+.volleyball {
+  background: center / cover no-repeat url('../../public/assets/volleyBG.jpg');
+}
+.run {
+  background: center / cover no-repeat url('../../public/assets/runGirlBG.jpg');
+}
+.workout {
+  background: center / cover no-repeat url('../../public/assets/squadBG.jpeg');
 }
 
 .container {
