@@ -60,12 +60,15 @@ export default function AddEventForm() {
         value={sportIdInput} 
         type="text" 
         className="form__item" 
+        placeholder="виды спорта"
       />
       <input 
         onChange={(e) => setAreaIdInput(e.target.value)} 
         value={areaIdInput} 
         type="text" 
         className="form__item" 
+        placeholder="площадка"
+
       />
       <button onClick={submitHandler}>Создать</button>
       <button>Закрыть</button>
